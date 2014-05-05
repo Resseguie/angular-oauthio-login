@@ -12,7 +12,8 @@ Currently only supports Twitter and Facebook login.
 	1. `oauthio-login.min.js`
 3. include the module in angular (i.e. in `app.js`) - `resseguie.angular-oauthio-login`
 
-
+## Dependencies
+At a minimum, this module just depends on AngularJS, but the directive adds classes that support Bootstrap buttons.
 
 ## Documentation
 
