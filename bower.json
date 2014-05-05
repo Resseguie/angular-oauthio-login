@@ -5,7 +5,7 @@
 		"David Resseguie <david@resseguie.com>"
 	],
 	"description": "Simple AngularJS service/directive pair for authenticating users using the OAuth.io services.",
-	"main": "oauthio-login.min.js",
+	"main": "oauthio-login.js",
 	"keywords": [
 		"oauth", "login","angular","AngularJS","twitter","facebook","oauthio"
 	],
