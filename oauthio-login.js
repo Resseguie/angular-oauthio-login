@@ -52,7 +52,7 @@ angular.module('resseguie.angular-oauthio-login', [])
 	
 	return self;
 }])
-.directive('drrTwitterLogin',
+.directive('drrOauthioLogin',
 	['$location','drrOauthioLogin', function($location,oauthioLogin){
 		return {
 			restrict : "EA",
