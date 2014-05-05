@@ -2,7 +2,7 @@
 
 Simple AngularJS service/directive pair for authenticating users using the OAuth.io service.
 
-Currently only supports Twitter and Facebook login.
+If you use Twitter, Facebook, or GitHub, the API call to populate the user object is done for you. If you use another provider, you need to use the returned endpoint to make the OAuth calls to the provider API yourself.
 
 ## Install
 1. download the files
