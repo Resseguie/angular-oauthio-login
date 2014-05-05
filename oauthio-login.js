@@ -53,7 +53,7 @@ angular.module('resseguie.angular-oauthio-login', [])
 	return self;
 }])
 .directive('drrOauthioLogin',
-	['$location','drrOauthioLogin', function($location,oauthioLogin){
+	['drrOauthioLogin', function(oauthioLogin){
 		return {
 			restrict : "EA",
 			template : '<div class="oauthio-login">'+
