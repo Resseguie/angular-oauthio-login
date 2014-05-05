@@ -19,8 +19,12 @@
 		"tests"
 	],
 	"dependencies": {
-		"angular":"~1.2.0",
+		"angular":"~1.2.11",
 		"oauth-js": "~0.1.7"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/Resseguie/angular-oauthio-login.git"
 	},
 	"devDependencies": {
 	}
