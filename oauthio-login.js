@@ -64,9 +64,9 @@ angular.module('resseguie.angular-oauthio-login', [])
 						'</div>',
 			scope : {
 				oauthUser     : "=", // model to store the results
-				oauthioKey    : "@", // OAuthi.io public key
 				oauthError    : "=", // model to store any error messages
-				oauthProvider : "="  // currently only supports 'twitter'
+				oauthioKey    : "@", // OAuthi.io public key
+				oauthProvider : "@"  // currently only supports 'twitter'
 			},
 			link: function(scope,element,attrs){
 				scope.validProvider = function(provider){

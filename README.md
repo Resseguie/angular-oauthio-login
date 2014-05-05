@@ -21,9 +21,9 @@ Just add the following directive:
 ```html
 	<div drr-oauthio-login
 		data-oauth-user="oauthUser"
-		data-oauth-provider="oauthProvider"
-		data-oauthio-key="{{oauthioKey}}"
-		data-oauth-error="authError">
+		data-oauth-error="authError"
+		data-oauth-provider="twitter"
+		data-oauthio-key="<your public OAuth.io key>">
 	</div>
 ```
 
