@@ -22,18 +22,15 @@ Just add the following directive:
 ```html
 	<div drr-oauthio-login
 		data-oauth-user="oauthUser"
-		data-oauth-error="authError"
 		data-oauth-provider="twitter"
 		data-oauthio-key="<your public OAuth.io key>">
 	</div>
 ```
 
-Where oauthUser is where the authenticated user will be saved. oauthProvider specifies the OAuth provider to use (e.g. 'facebook' or 'twitter'), and authError is where any error messages will be saved.
-
 You can extract information from the oauthUser after successful authentication such as:
 
 ```html
-<h1 ng-show="oauthProvider=='twitter'">Logged in as {{oauthUser.screen_name}}</h1>
-<h1 ng-show="oauthProvider=='facebook'">Logged in as {{oauthUser.name}}</h1>
+<h1>Logged in as {{oauthUser.user.name}}</h1>
 ```
 
+Our use oauthUser.endpoint to make manual OAuth calls to the provider API.

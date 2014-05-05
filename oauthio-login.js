@@ -12,7 +12,8 @@ angular.module('resseguie.angular-oauthio-login', [])
 
 	var providerAPI = {
 		'twitter' : '/1.1/account/verify_credentials.json',
-		'facebook': '/me'
+		'facebook': '/me',
+		'github'  : '/user'
 	};
 
 	//public methods & properties
@@ -27,20 +28,25 @@ angular.module('resseguie.angular-oauthio-login', [])
 				if(err) {
 					deferred.reject(err);
 				}else{
+					var result = {};
+					result.endpoint = res;
+
 					var api = providerAPI[provider];
 					if(!api){
-						deferred.reject('Unsupported OAuth provider. Xurrently supported: '+providerAPI.keys().join(','));
+						deferred.resolve(result);
+					}else{
+						res.get(api)
+							.then(function(data){
+								result.user = data;
+								deferred.resolve(result);
+							});						
 					}
-					res.get(api)
-						.then(function(data){
-							deferred.resolve(data);
-						});
 					
 				}
 			});
 			return deferred.promise;
 		},
-		validProvider: function(provider){
+		knownProvider: function(provider){
 			var valid = providerAPI.hasOwnProperty(provider);
 			return valid;
 		}
@@ -57,35 +63,41 @@ angular.module('resseguie.angular-oauthio-login', [])
 		return {
 			restrict : "EA",
 			template : '<div class="oauthio-login">'+
-							'<button ng-show="validProvider(oauthProvider)" class="btn btn-xs btn-primary" ng-click="login()">'+
+							'<button class="btn btn-xs" ng-click="login()">'+
 								'<div  ng-show="oauthProvider==\'twitter\'"><img src="https://oauth.io/api/providers/twitter/logo" /> Connect with Twitter</div>'+
 								'<div  ng-show="oauthProvider==\'facebook\'"><img src="https://oauth.io/api/providers/facebook/logo" /> Connect with Facebook</div>'+
+								'<div  ng-show="oauthProvider==\'github\'"><img src="https://oauth.io/api/providers/github/logo" /> Connect with GitHub</div>'+
+								'<div  ng-show="!knownProvider(oauthProvider)">Connect with {{oauthProvider}}</div>'+
 							'</button>'+
 						'</div>',
 			scope : {
 				oauthUser     : "=", // model to store the results
-				oauthError    : "=", // model to store any error messages
 				oauthioKey    : "@", // OAuthi.io public key
 				oauthProvider : "@"  // currently only supports 'twitter'
 			},
 			link: function(scope,element,attrs){
-				scope.validProvider = function(provider){
-					return oauthioLogin.validProvider(provider);
+				scope.knownProvider = function(provider){
+					return oauthioLogin.knownProvider(provider);
 				};
 
 				scope.login = function(){
 					if(scope.oauthioKey){
 						oauthioLogin.initialize(scope.oauthioKey);
-					
+				
 						var promise = oauthioLogin.login(scope.oauthProvider);
-						promise.then(function(user){
-								scope.oauthUser  = user;
-								scope.oauthError = null;
-							},function(error){
-								console.log(error);
-								scope.oauthUser  = null;
-								scope.oauthError = error.message;
-							});
+						promise.then(function(result){
+							var oauthUser = {};
+							oauthUser.endpoint = result.endpoint;
+							oauthUser.user     = result.user;
+							oauthUser.error    = null;
+							scope.oauthUser    = oauthUser;
+						},function(error){
+							var oauthUser = {};
+							oauthUser.endpoint = null;
+							oauthUser.user     = null;
+							oauthUser.error    = error;
+							scope.oauthUser    = oauthUser;
+						});
 					}
 				};
 			}
