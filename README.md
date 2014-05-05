@@ -7,7 +7,7 @@ Currently only supports Twitter and Facebook login.
 ## Install
 1. download the files
 	1. Bower
-		1. add `"resseguie/angular-oauthio-login": "latest"` to your `bower.json` file then run `bower install` OR run `bower install resseguie/angular-oauthio-login`
+		1. add `"angular-oauthio-login": "resseguie/angular-oauthio-login#latest"` to your `bower.json` file then run `bower install` OR run `bower install resseguie/angular-oauthio-login`
 2. include the files in your app
 	1. `oauthio-login.min.js`
 3. include the module in angular (i.e. in `app.js`) - `resseguie.angular-oauthio-login`
