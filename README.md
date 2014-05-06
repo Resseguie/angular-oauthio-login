@@ -13,7 +13,7 @@ If you use Twitter, Facebook, or GitHub, the API call to populate the user objec
 3. include the module in angular (i.e. in `app.js`) - `resseguie.angular-oauthio-login`
 
 ## Dependencies
-At a minimum, this module just depends on AngularJS, but the directive adds classes that support Bootstrap buttons.
+At a minimum, this module just depends on AngularJS, but the directive adds classes that support Bootstrap buttons with Font Awesome icons for each OAuth provider. If the provider name (in lowercase) matches the Font Awesome class name, the icon is added automatically.
 
 ## Documentation
 
