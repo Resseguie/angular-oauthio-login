@@ -1,6 +1,6 @@
 # AngularJS service/directive for authenticating with OAuth.io services
 
-Simple AngularJS service/directive pair for authenticating users using the OAuth.io service.
+Simple AngularJS service/directive pair for authenticating users using the OAuth.io service. Produces a simple button that handles all the OAuth.io calls for you and saves the resulting authenticated user object into your scope.
 
 If you use Twitter, Facebook, or GitHub, the API call to populate the user object is done for you. If you use another provider, you need to use the returned endpoint to make the OAuth calls to the provider API yourself.
 
@@ -35,3 +35,7 @@ You can extract information from the oauthUser after successful authentication s
 ```
 
 Our use oauthUser.endpoint to make manual OAuth calls to the provider API.
+
+## Testing
+
+There is a sample application included for testing the directive and showing its usage. You'll just need to run it inside a web server or use something like 'python -m SimpleHTTPServer 8000'.
