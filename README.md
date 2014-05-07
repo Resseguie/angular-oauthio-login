@@ -2,7 +2,8 @@
 
 Simple AngularJS service/directive pair for authenticating users using the OAuth.io service. Produces a simple button that handles all the OAuth.io calls for you and saves the resulting authenticated user object into your scope.
 
-If you use Twitter, Facebook, or GitHub, the API call to populate the user object is done for you. If you use another provider, you need to use the returned endpoint to make the OAuth calls to the provider API yourself.
+The saved user object includes the raw endpoint (for making your own manual calls to the provider API), the authenticated user object from the provider (where supported by OAuth.io me() endpoint), and/or any returned error message.
+
 
 ## Install
 1. download the files
