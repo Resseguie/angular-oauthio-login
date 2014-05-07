@@ -1,5 +1,15 @@
 Version numbers correspond to `bower.json` version
 
+# 0.0.4
+
+## Features
+* Allow selection of alternate Font Awesom icon
+* Include reference to the OAuth provider in the returned object
+
+## Bug Fixes
+
+## Breaking Changes
+
 # 0.0.3
 
 ## Features
