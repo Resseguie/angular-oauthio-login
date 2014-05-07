@@ -11,9 +11,12 @@ angular.module('resseguie.angular-oauthio-login', [])
 .factory('drrOauthioLogin', [ '$q', function ($q) {
 
 	var providerAPI = {
-		'twitter' : '/1.1/account/verify_credentials.json',
-		'facebook': '/me',
-		'github'  : '/user'
+		'twitter'   : '/1.1/account/verify_credentials.json',
+		'facebook'  : '/me',
+		'github'    : '/user',
+		'google'    : '/plus/v1/people/me',
+		'linkedin'  : '/v1/people/~:(email-address,formatted-name,headline,picture-url)?format=json',
+		'wordpress' : '/rest/v1/me'
 	};
 
 	//public methods & properties
