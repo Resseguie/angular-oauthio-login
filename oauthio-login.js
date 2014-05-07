@@ -10,15 +10,6 @@
 angular.module('resseguie.angular-oauthio-login', [])
 .factory('drrOauthioLogin', [ '$q', function ($q) {
 
-	var providerAPI = {
-		'twitter'   : '/1.1/account/verify_credentials.json',
-		'facebook'  : '/me',
-		'github'    : '/user',
-		'google'    : '/plus/v1/people/me',
-		'linkedin'  : '/v1/people/~:(email-address,formatted-name,headline,picture-url)?format=json',
-		'wordpress' : '/rest/v1/me'
-	};
-
 	//public methods & properties
 	var self ={
 		initialize : function(key){
@@ -35,25 +26,14 @@ angular.module('resseguie.angular-oauthio-login', [])
 				}else{
 					var result = {};
 					result.endpoint = res;
-
-					var api = providerAPI[provider];
-					if(!api){
-						deferred.resolve(result);
-					}else{
-						res.get(api)
-							.then(function(data){
-								result.user = data;
-								deferred.resolve(result);
-							});						
-					}
-					
+					res.me(['name','alias','email','bio','avatar'])
+						.done(function(data){
+							result.user = data;
+							deferred.resolve(result);
+						});
 				}
 			});
 			return deferred.promise;
-		},
-		knownProvider: function(provider){
-			var valid = providerAPI.hasOwnProperty(provider.toLowerCase());
-			return valid;
 		}
 	};
 	
@@ -83,11 +63,6 @@ angular.module('resseguie.angular-oauthio-login', [])
 				attrs.$observe('providerIcon',function(value){
 					if(!value){ scope.providerIcon = scope.oauthProvider.toLowerCase();}
 				});
-
-
-				scope.knownProvider = function(provider){
-					return oauthioLogin.knownProvider(provider);
-				};
 
 				scope.login = function(){
 					if(scope.oauthioKey){
