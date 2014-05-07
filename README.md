@@ -22,7 +22,8 @@ Just add the following directive:
 ```html
 	<div drr-oauthio-login
 		data-oauth-user="oauthUser"
-		data-oauth-provider="twitter"
+		data-oauth-provider="github"
+		data-provider-icon="github-alt"  // optional
 		data-oauthio-key="<your public OAuth.io key>">
 	</div>
 ```
