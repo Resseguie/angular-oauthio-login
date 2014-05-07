@@ -66,15 +66,22 @@ angular.module('resseguie.angular-oauthio-login', [])
 			restrict : "EA",
 			template : '<div class="oauthio-login">'+
 							'<button class="btn btn-s btn-primary" ng-click="login()">'+
-								'<i class="fa fa-{{oauthProvider | lowercase}}" style="margin-right: 5px;"></i> Connect with {{oauthProvider}}'+
+								'<i class="fa fa-{{providerIcon | lowercase}}" style="margin-right: 5px;"></i> Connect with {{oauthProvider}}'+
 							'</button>'+
 						'</div>',
 			scope : {
 				oauthUser     : "=", // model to store the results
 				oauthioKey    : "@", // OAuthi.io public key
-				oauthProvider : "@"
+				oauthProvider : "@", // OAuth provider to authenticate with
+				providerIcon  : "@"  // optional Font Awesome icon name to use
 			},
 			link: function(scope,element,attrs){
+				// Default to fa-{{oauthProvider}} if no icon specified
+				attrs.$observe('providerIcon',function(value){
+					if(!value){ scope.providerIcon = scope.oauthProvider.toLowerCase();}
+				});
+
+
 				scope.knownProvider = function(provider){
 					return oauthioLogin.knownProvider(provider);
 				};
@@ -88,6 +95,7 @@ angular.module('resseguie.angular-oauthio-login', [])
 							var oauthUser = {};
 							oauthUser.endpoint = result.endpoint;
 							oauthUser.user     = result.user;
+							oauthUser.provider = scope.oauthProvider;
 							oauthUser.error    = null;
 							scope.oauthUser    = oauthUser;
 						},function(error){
@@ -95,6 +103,7 @@ angular.module('resseguie.angular-oauthio-login', [])
 							oauthUser.endpoint = null;
 							oauthUser.user     = null;
 							oauthUser.error    = error;
+							oauthUser.provider = scope.oauthProvider;
 							scope.oauthUser    = oauthUser;
 						});
 					}
