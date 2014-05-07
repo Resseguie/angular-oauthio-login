@@ -1,5 +1,15 @@
 Version numbers correspond to `bower.json` version
 
+# 0.0.5
+
+## Features
+* Take advantage of OAuth.io me() endpoint to support many more providers
+
+## Bug Fixes
+
+## Breaking Changes
+* Format of returned user object slightly different to conform to me() response
+
 # 0.0.4
 
 ## Features
