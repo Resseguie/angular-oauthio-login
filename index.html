@@ -1,0 +1,62 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="oauthioApp" ng-controller="AppCtrl"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="oauthioApp" ng-controller="AppCtrl"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="oauthioApp" ng-controller="AppCtrl"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="oauthioApp" ng-controller="AppCtrl"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		
+		<title>angular-oauthio-login test</title>
+
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+		<!-- one from bower doesn't transfer fonts with correct MIME type -->	
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+		<style>
+			[ng-click],
+			[data-ng-click],
+			[x-ng-click] {
+			    cursor: pointer;
+			}
+		</style>
+
+	</head>
+	<body>
+
+		<h1>angular-oauthio-login test</h1>
+
+		<div ng-repeat="provider in ['Twitter','Facebook','GitHub','LinkedIn','unknown']">
+			<h2>{{provider}}</h2>
+			<div drr-oauthio-login
+				data-oauth-user="oauthUser"
+				data-oauth-provider="{{provider}}"
+				data-provider-icon="{{provider}}-square"
+				data-oauthio-key="{{oauthioKey}}">
+			</div>
+
+			<h2 ng-show="oauthUser.user">Logged in user: {{oauthUser.user.name}}</h2>
+			<h2 ng-show="oauthUser.error">Error: {{oauthUser.error.message}}</h2>
+			<div ng-show="oauthUser"><a ng-click="oauthUser = null">Log out</a></div>
+
+		</div>
+
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="bower_components/oauth-js/oauth.js"></script>
+		<script src="oauthio-login.js"></script>
+
+		<script>
+		angular.module('oauthioApp', ['resseguie.angular-oauthio-login']);
+		angular.module('oauthioApp')
+			.controller('AppCtrl',['$scope',function($scope){
+				//
+				// TODO Put your OAuth.io public key here for testing
+				// 
+				$scope.oauthioKey = '<your public OAuth.io key here>';
+			}]);
+		</script>
+
+</body>
+</html>
