@@ -30,12 +30,12 @@
 
 			<div class="alert alert-danger" ng-show="keyError">You have to enter your OAuth.io public key for the test app to work!</div>
 
-			<div ng-repeat="provider in ['Twitter','Facebook','GitHub','LinkedIn','Google', 'unknown']">
+			<div ng-repeat="(provider,icon) in providers">
 				<h2>{{provider}}</h2>
 				<div drr-oauthio-login
 					data-oauth-user="oauthUser"
 					data-oauth-provider="{{provider}}"
-					data-provider-icon="{{provider}}-square"
+					data-provider-icon="{{icon}}"
 					data-oauthio-key="{{oauthioKey}}">
 				</div>
 
@@ -58,7 +58,18 @@
 					//
 					// TODO Put your OAuth.io public key here for testing
 					// 
-					$scope.oauthioKey = '<your public OAuth.io key here>';
+					$scope.oauthioKey = 'dHhZO5BWskzSeS9_m0r46L2xkXo';
+
+					// Sample providers for test app and icon to use on button
+					$scope.providers = {
+						'Twitter'  : 'twitter-square',
+						'Facebook' : 'facebook-square',
+						'GitHub'   : 'github-square',
+						'LinkedIn' : 'linkedin-square',
+						'Google'   : 'google-plus-square',
+						'Wordpress': 'rss-square',
+						'unknown'  : 'question-circle'
+					};
 
 					$scope.$watch('oauthioKey',function(value){
 						$scope.keyError = (value == '<your public OAuth.io key here>');
