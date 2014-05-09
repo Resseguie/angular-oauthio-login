@@ -22,20 +22,21 @@ Just add the following directive:
 
 ```html
 	<div drr-oauthio-login
-		data-oauth-user="oauthUser"
+		data-on-login="login(endpoint,user,provider,error)"
 		data-oauth-provider="github"
 		data-provider-icon="github-alt"  // optional
 		data-oauthio-key="<your public OAuth.io key>">
 	</div>
 ```
 
-You can extract information from the oauthUser after successful authentication such as:
+After login, the onLogin callback function will be called. You can extract information from the returned user object after successful authentication such as:
 
 ```html
-<h1>Logged in as {{oauthUser.user.name}}</h1>
+<h1>Logged in as {{user.name}}</h1>
 ```
 
-Our use oauthUser.endpoint to make manual OAuth calls to the provider API.
+Use the returned endpoint object to make manual OAuth calls to the provider API.
+
 
 ## Testing
 

@@ -30,19 +30,19 @@
 
 			<div class="alert alert-danger" ng-show="keyError">You have to enter your OAuth.io public key for the test app to work!</div>
 
+			<h2 ng-show="oauthUser.user">Logged in user: {{oauthUser.user.name}}</h2>
+			<h2 ng-show="oauthUser.error">Error: {{oauthUser.error.message}}</h2>
+			<div ng-show="oauthUser"><a ng-click="oauthUser = null">Log out</a></div>
+
+
 			<div ng-repeat="(provider,icon) in providers">
 				<h2>{{provider}}</h2>
 				<div drr-oauthio-login
-					data-oauth-user="oauthUser"
+					data-on-login="login(endpoint,user,provider,error)"
 					data-oauth-provider="{{provider}}"
 					data-provider-icon="{{icon}}"
 					data-oauthio-key="{{oauthioKey}}">
 				</div>
-
-				<h2 ng-show="oauthUser.user">Logged in user: {{oauthUser.user.name}}</h2>
-				<h2 ng-show="oauthUser.error">Error: {{oauthUser.error.message}}</h2>
-				<div ng-show="oauthUser"><a ng-click="oauthUser = null">Log out</a></div>
-
 			</div>
 
 			<script src="bower_components/jquery/dist/jquery.js"></script>
@@ -71,7 +71,16 @@
 
 					$scope.$watch('oauthioKey',function(value){
 						$scope.keyError = (value == '<your public OAuth.io key here>');
-					})
+					});
+
+					$scope.login = function(endpoint,user,provider,error){
+						$scope.oauthUser = {
+							endpoint: endpoint,
+							user: user,
+							provider: provider,
+							error: error
+						};
+					}
 				}]);
 			</script>
 

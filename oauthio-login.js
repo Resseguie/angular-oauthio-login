@@ -53,7 +53,7 @@ angular.module('resseguie.angular-oauthio-login', [])
 							'</button>'+
 						'</div>',
 			scope : {
-				oauthUser     : "=", // model to store the results
+				onLogin       : "&", // callback function
 				oauthioKey    : "@", // OAuthi.io public key
 				oauthProvider : "@", // OAuth provider to authenticate with
 				providerIcon  : "@"  // optional Font Awesome icon name to use
@@ -75,7 +75,7 @@ angular.module('resseguie.angular-oauthio-login', [])
 							oauthUser.user     = result.user;
 							oauthUser.provider = scope.oauthProvider;
 							oauthUser.error    = null;
-							scope.oauthUser    = oauthUser;
+							scope.onLogin(oauthUser);
 						},function(error){
 							var oauthUser = {};
 							oauthUser.endpoint = null;
@@ -83,6 +83,7 @@ angular.module('resseguie.angular-oauthio-login', [])
 							oauthUser.error    = error;
 							oauthUser.provider = scope.oauthProvider;
 							scope.oauthUser    = oauthUser;
+							scope.onLogin(oauthUser);
 						});
 					}
 				};

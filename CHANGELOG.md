@@ -1,5 +1,16 @@
 Version numbers correspond to `bower.json` version
 
+# 0.0.6
+
+## Features
+* Switched to passing callback function rather than two way binding with object in scope
+
+## Bug Fixes
+
+## Breaking Changes
+* Not requires passing of callback function which receives a copy of the oauthUser object previously shared with two way data binding
+
+
 # 0.0.5
 
 ## Features
